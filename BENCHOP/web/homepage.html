@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<title>BENCHOP - Homepage</title>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="#home" class="w3-bar-item w3-button"><b>BENCHOP</b> ACC - 15</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="#projects" class="w3-bar-item w3-button">Projects</a>
+      <a href="#about" class="w3-bar-item w3-button">About Us</a>
+      <a href="#documents" class="w3-bar-item w3-button">Documents</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <img class="w3-image" src="/w3images/architect.jpg" alt="Architecture" width="1500" height="800">
+  <div class="w3-display-middle w3-margin-top w3-center">
+    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>BR</b></span> <span class="w3-hide-small w3-text-light-grey">Architects</span></h1>
+  </div>
+</header>
+
+<!-- Page content -->
+<div class="w3-content w3-padding" style="max-width:1564px">
+
+  <div class="w3-container w3-padding-32" id="projects">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Projects</h3>
+    <br>
+    <p> The <a href="http://www.it.uu.se/research/project/compfin/benchop/">BENCHOP</a> project is a
+            large, international collaborative project initiated by 
+            <a href="http://www.it.uu.se/research/scientific_computing/project/compfin">the Computational Finance research group</a> at the
+            Division of Scientific Computing. <br>
+            BENCHOP aims at defining a standard benchmark to
+            compare existing and new numerical methods for option pricing. <br>
+            The codes are all
+            implemented in MATLAB, a commercial software frequently used in computational
+            science. <br>
+            To that end, six test problem were defined, and 15 numerical methods for their solution
+            implemented
+    </p>
+  </div>
+
+  <div class="w3-container w3-padding-32" id="calculate">
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">BENCHOP Calculator</h3>
+        <br>
+        <div class="form-group" >
+            <label for="methods">Select method</label>
+            <select class="form-control" id="methods">
+              <option id="0">All methods</option>  
+              <option id="1">MC</option>
+              <option id="2">RBF</option>
+            </select>
+        </div>
+        <p>Input your parameters</p>
+        <form action="/action_page.php" target="_blank">
+          <input class="w3-input w3-border" type="text" placeholder="Param1" id="param1">
+          <input class="w3-input w3-section w3-border" type="text" placeholder="Param2" id="param2">
+          <input class="w3-input w3-section w3-border" type="text" placeholder="Param3" id="param3">
+          <input class="w3-input w3-section w3-border" type="text" placeholder="Param4" id="param4">
+          <button class="w3-button w3-black w3-section" type="submit">
+            <i class="fa fa-paper-plane"></i> Calculate
+          </button>
+        </form>
+      </div>
+
+
+  <div class="w3-container w3-padding-32" id="about">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About Us</h3>
+    <br>
+    <p>
+        <b>Alexander Engberg</b> - Project report (LaTex), Docker implementation. <br><br>
+
+        <b>Joakim Eklund</b> - Implementing basic design (LaTex document). <br><br>
+            
+        <b>Nhat Minh Pham</b> - Web frontend, contextualization in Docker. <br><br>
+            
+        <b>Arianna Delsante</b> - Main responsibility project report. <br><br>
+    </p>
+  </div>  
+
+  
+<!-- End page content -->
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Powered by Nhat Minh Pham</p>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
