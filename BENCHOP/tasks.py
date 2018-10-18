@@ -7,5 +7,5 @@ AppCelery = Celery('tasks', backend='rpc://', broker='pyampq://')
 
 @AppCelery.task
 def runBench():
-  paths, timeToExecute, Error = octave.Table()
-  return (paths, timeToExecute, Error)
+  timeToExecute, paths, Error = octave.Table()
+  return (timeToExecute, paths, Error)
