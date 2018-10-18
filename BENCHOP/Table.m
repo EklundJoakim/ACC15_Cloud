@@ -23,6 +23,9 @@
 % ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 % POSSIBILITY OF SUCH DAMAGE.
 
+
+function [paths, timeToExecute, Error] = Table()
+
 clear all
 format long
 warning off
@@ -36,7 +39,7 @@ rootpath=pwd;
 S=[90,100,110]; K=100; T=1.0; r=0.03; sig=0.15;
 U=[2.758443856146076 7.485087593912603 14.702019669720769];
     
-filepathsBSeuCallUI=getfilenames('/Users/Joakim/Downloads/BENCHOP','BSeuCallUI_*.m');
+filepathsBSeuCallUI=getfilenames('./','BSeuCallUI_*.m');
 par = {S,K,T,r,sig};
 [timeBSeuCallUI,relerrBSeuCallUI] = executor(rootpath, filepathsBSeuCallUI, U, par);
 cd(rootpath);
