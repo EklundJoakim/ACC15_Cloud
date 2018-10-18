@@ -1,12 +1,13 @@
 #Settings for vm
 
 sudo apt-get update
-sudo apt-get install -y python-pip
-sudo pip install -U Celery
+sudo apt-get install -y python3-pip
+sudo pip3 install -U Celery
 sudo apt install -y python-celery-common
-sudo pip install flask
+sudo pip3 install flask
+sudo pip3 install numpy
 sudo apt-get install -y octave
-sudo pip install oct2py
+sudo pip3 install oct2py
 sudo apt-get install -y python-scipy
 sudo apt install -y rabbitmq-server
 
