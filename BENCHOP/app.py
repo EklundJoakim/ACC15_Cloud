@@ -11,6 +11,7 @@ app = Flask(__name__)
 def runbenchmark():
   results = runBench.delay()
   resultat = results.get()
+  return resultat
 
 if __name__ == '__main__'
   app.run(host='0.0.0.0', debug=True)
