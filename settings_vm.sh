@@ -8,7 +8,7 @@ sudo pip3 install flask
 sudo pip3 install numpy
 sudo apt-get install -y octave
 sudo pip3 install oct2py
-sudo apt-get install -y python-scipy
+sudo apt-get install -y python3-scipy
 sudo apt install -y rabbitmq-server
 
 # Username: ACC15
