@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from tasks import runBench()
+from tasks import runBench
 
 
 app = Flask(__name__)
