@@ -1,0 +1,16 @@
+
+{
+  [1,1] = ./COS/BSeuCallUI_COS.m
+}
+
+
+{
+  [1,1] = ./FD/BSeuCallUI_UniformGrid.m
+}
+
+
+{
+  [1,1] = ./RBF-FD/BSeuCallUI_RBFFD.m
+}
+
+{"param2": "2.6030619939168296", "param3": "nan", "param1": "0.0006239414215087891"}

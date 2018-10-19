@@ -24,7 +24,7 @@
 % POSSIBILITY OF SUCH DAMAGE.
 
 
-function [paths, timeToExecute, Error] = Table()
+function timeToExecute = Table()
 
 clear all
 format long
@@ -44,7 +44,7 @@ par = {S,K,T,r,sig};
 [timeBSeuCallUI,relerrBSeuCallUI] = executor(rootpath, filepathsBSeuCallUI, U, par);
 cd(rootpath);
     
-paths = filepathsBSeuCallUI';
-timeToExecute = timeBSeuCallUI';
-Error = relerrBSeuCallUI';
+%%paths = filepathsBSeuCallUI;
+timeToExecute = timeBSeuCallUI;
+%%Error = relerrBSeuCallUI;
 end
