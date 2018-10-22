@@ -4,7 +4,8 @@ from celery import Celery
 from oct2py import octave
 from subprocess import call
 
-AppCelery = Celery('tasks', backend='rpc://', broker='pyamqp://')
+
+AppCelery = Celery('tasks', backend='rpc://', broker='amqp://ACC15:pwd@0.0.0.0:/myvhost')
 
 @AppCelery.task
 def runBench():
