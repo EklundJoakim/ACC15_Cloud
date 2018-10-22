@@ -22,7 +22,7 @@
 
 <!-- Header -->
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="/w3images/architect.jpg" alt="Architecture" width="1500" height="800">
+    <img class="w3-image" src="/w3images/architect.jpg" alt="Architecture" width="1500" height="800">
   <div class="w3-display-middle w3-margin-top w3-center">
     <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>BR</b></span> <span class="w3-hide-small w3-text-light-grey">Architects</span></h1>
   </div>
@@ -52,23 +52,30 @@
         <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">BENCHOP Calculator</h3>
         <br>
         <div class="form-group" >
+          <label for="methods">Options</label>
+          <select class="form-control" id="options">
+            <option id="0">Default Parameters</option>  
+            <option id="1">Modify r</option>
+          </select>
+        </div>
+        <div class="form-group" >
             <label for="methods">Select method</label>
             <select class="form-control" id="methods">
               <option id="0">All methods</option>  
-              <option id="1">MC</option>
-              <option id="2">RBF</option>
+              <option id="1">COS</option>
+              <option id="2">FD</option>
+              <option id="3">RBF-FD</option>
             </select>
         </div>
-        <p>Input your parameters</p>
-        <form action="/action_page.php" target="_blank">
-          <input class="w3-input w3-border" type="text" placeholder="Param1" id="param1">
-          <input class="w3-input w3-section w3-border" type="text" placeholder="Param2" id="param2">
-          <input class="w3-input w3-section w3-border" type="text" placeholder="Param3" id="param3">
-          <input class="w3-input w3-section w3-border" type="text" placeholder="Param4" id="param4">
-          <button class="w3-button w3-black w3-section" type="submit">
-            <i class="fa fa-paper-plane"></i> Calculate
-          </button>
-        </form>
+
+        <div id="withParameter" hidden>
+          <p>Input r</p>
+          <input class="w3-input w3-border" type="text" placeholder="r" id="param1">
+        </div>
+        <a class="w3-button w3-black w3-section" type="button" href="#" id="calculate_btn">
+          <i class="fa fa-paper-plane"></i> Calculate
+        </a>
+        
       </div>
 
 
@@ -80,7 +87,7 @@
 
         <b>Joakim Eklund</b> - Implementing basic design (LaTex document). <br><br>
             
-        <b>Nhat Minh Pham</b> - Web frontend, contextualization in Docker. <br><br>
+        <b>Nhat Minh Pham</b> - Web frontend, Building Flask functions, Contextualization in Docker. <br><br>
             
         <b>Arianna Delsante</b> - Main responsibility project report. <br><br>
     </p>
@@ -98,6 +105,29 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+  $(document).ready(function () {
+    $('#options').on('change', function() {
+      var id = $(this).children(":selected").attr("id");
+      console.log(id);
+      if (id == 1) {
+        $('#withParameter').removeAttr('hidden');
+        $('#calculate_btn').text('Calculate with r');
+      } else {
+        $('#withParameter').attr('hidden','hidden');
+        $('#calculate_btn').text('Calculate');
+      }
+    });
+    $('#param1').keypress(function(event) {
+      if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+      }
+    });
+  })
+</script>
+
 </body>
 </html>
+
 
