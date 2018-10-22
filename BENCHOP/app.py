@@ -4,6 +4,10 @@ from tasks import runBench
 
 app = Flask(__name__)
 
+@app.route("/")
+def homepage():
+    return render_template('./web/homepage.html', message=message)
+
 @app.route('/calculate/', methods = ['GET'])
 def runbenchmark():
   results = runBench.delay()
