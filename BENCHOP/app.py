@@ -20,10 +20,11 @@ def runbenchmark():
 
 @app.route('/run-calculation/', methods = ['POST'])
 def runCalculation():
-  option_id = request.args.get('option_id', -1, type=int)
-  problem_id = request.args.get('problem_id', -1, type=int)
-  r = request.args.get('r', 0.03, type=float)
-  return jsonify(status="success")
+  option_id = request.form['option_id']
+  problem_id = request.form['problem_id']
+  r = request.form['r']
+  result = runBench.delay(int(problem_id), float(r))
+  return jsonify(status="success", result=result)
 
 
 @app.route('/administrator/login/', methods=['POST', 'GET'])

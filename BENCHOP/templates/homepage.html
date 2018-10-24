@@ -151,6 +151,10 @@
         },
         dataType: "json",
 
+        beforeSend: function () {
+          $("body").css("cursor", "progress");
+        },
+
         success: function(data) { 
           console.log(data);
           $('#result').text('okokokok');                    
