@@ -59,7 +59,7 @@
           </select>
         </div>
         <div class="form-group" >
-            <label for="methods">Select method</label>
+            <label for="methods">Select problem</label>
             <select class="form-control" id="problems">
               <option>-- Select problem --</option>
               <option id="1">The Black–Scholes–Merton model for one underlying asset</option>
@@ -73,9 +73,10 @@
           <p>Input r</p>
           <input class="w3-input w3-border" type="text" placeholder="r" id="param1">
         </div>
-        <a class="w3-button w3-black w3-section" type="button" href="#" id="calculate_btn">
+        <hr>
+        <button class="btn btn btn-dark" id="calculate_btn">
           <i class="fa fa-paper-plane"></i> Calculate
-        </a>
+        </button>
         
       </div>
   
@@ -119,10 +120,8 @@
       var id = $(this).children(":selected").attr("id");
       if (id == 1) {
         $('#withParameter').removeAttr('hidden');
-        $('#calculate_btn').text('Calculate with r');
       } else {
         $('#withParameter').attr('hidden','hidden');
-        $('#calculate_btn').text('Calculate');
       }
     });
     $('#param1').keypress(function(event) {
@@ -153,15 +152,22 @@
 
         beforeSend: function () {
           $("body").css("cursor", "progress");
-          $('#result').text("Calculating");
+          $('#calculate_btn').text("Calculating...");
+          $('#calculate_btn').prop("disabled", true);
         },
                    
         error: function(error) {
           console.log(error);
+          $("body").css("cursor", "auto");
+          $('#calculate_btn').text('Calculate');
+          $('#calculate_btn').prop("disabled", false);
           $('#result').text('Calculation failed');
         },
         success: function(data) {
           console.log(data);
+          $("body").css("cursor", "auto");
+          $('#calculate_btn').text('Calculate');
+          $('#calculate_btn').prop("disabled", false);
           $('#result').text(data['result']);
         },
         timeout: 40000
