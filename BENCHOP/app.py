@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from tasks import runBench
+from time import sleep
 from flask import render_template, redirect, request, make_response, jsonify
 
 app = Flask(__name__)
@@ -23,7 +24,15 @@ def runCalculation():
   option_id = request.form['option_id']
   problem_id = request.form['problem_id']
   r = request.form['r']
-  result = runBench.delay(int(problem_id), float(r))
+  running = runBench.delay(int(problem_id), float(r))
+  while not running.ready():
+    sleep(0.5)
+  f = open('result.txt','r')
+  lines = f.read().splitlines()
+  last_line1 = lines[-1]
+  last_line2 = lines[-2]
+  f.close()
+  result = ("Problem " + str(problem_id) + ";\nr = " + str(r) + ";\nCOS: " + str(last_line1) + "\nUniform Grid: " + str(last_line2))
   return jsonify(status="success", result=result)
 
 

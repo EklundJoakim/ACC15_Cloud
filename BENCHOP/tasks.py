@@ -5,8 +5,8 @@ from oct2py import octave
 from subprocess import call
 from runfile import runfile
 
-AppCelery = Celery('tasks', backend='rpc://', broker='amqp://ACC15:pwd@0.0.0.0:/myvhost')
-
+#AppCelery = Celery('tasks', backend='rpc://', broker='amqp://ACC15:pwd@0.0.0.0:/myvhost')
+AppCelery = Celery('tasks', backend='rpc://', broker='pyamqp://')
 @AppCelery.task
 def runBench(prob, r):
     runfile(prob, r)
@@ -15,7 +15,7 @@ def runBench(prob, r):
     last_line1 = lines[-1]
     last_line2 = lines[-2]
     f.close()
-    return ("COS: " + str(last_line1) + "\nUniform Grid: " + str(last_line2))
+    return ("Problem " + str(prob) + "r = " + str(r) + "; COS: " + str(last_line1) + "\nUniform Grid: " + str(last_line2))
 
 #paths
 #Error
