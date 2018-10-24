@@ -24,7 +24,7 @@
 % POSSIBILITY OF SUCH DAMAGE.
 
 
-function [time, relError, problem] = Table(number, r)
+function [result] = Table(number, r)
 
 format long
 warning off
@@ -43,6 +43,7 @@ if number==1
     relError = relerrBSeuCallUI;
     problem = 'Black–Scholes–Merton model for one underlying asset';
    
+    result = [time, relError];
     cd(rootpath);
      
 %% Problem 1 b) I
@@ -58,7 +59,7 @@ elseif number==2
     time = timeBSamPutUI;
     relError = relerrBSamPutUI;
     problem = 'Black Scholes Merton model with discrete dividends';
-    
+    result = [time, relError];
     cd(rootpath);
 
 %% Problem 1 c) I
@@ -74,7 +75,7 @@ elseif number==3
     time = timeBSupoutCallI;
     relError = relerrBSupoutCallI;
     problem = 'Black Scholes Merton model with local volatility';
-    
+    result = [time, relError];
     cd(rootpath);
 end
 
