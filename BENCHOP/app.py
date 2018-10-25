@@ -31,7 +31,7 @@ def runCalculation():
     running = runBench.delay(int(problem_id), float(r))
     while not running.ready():
       sleep(0.5)
-    f = open('result.txt','r')
+    f = open("result-" + str(problem_id) +".txt",'r')
     lines = f.read().splitlines()
     last_line1 = lines[-1]
     last_line2 = lines[-2]
