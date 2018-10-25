@@ -39,16 +39,18 @@ def runCalculation():
     result = result + "Problem " + str(problem_id) + ";\nr = " + str(r) + ";\nCOS: " + str(last_line1) + "\nUniform Grid: " + str(last_line2)
     return jsonify(status="success", result=result)
   else:
+    running1 = runBench.delay(1, float(r))
+    running2 = runBench.delay(2, float(r))
+    running3 = runBench.delay(3, float(r))
+    while not (running1.ready() and running2.ready() and running3.ready()):
+      sleep(0.5)
     for i in range(1,4):
-      running = runBench.delay(i, float(r))
-      while not running.ready():
-        sleep(0.5)
-      f = open('result.txt','r')
+      f = open("result-" + str(i) + ".txt",'r')
       lines = f.read().splitlines()
       last_line1 = lines[-1]
       last_line2 = lines[-2]
       f.close()
-      result = result + "Problem " + str(problem_id) + ";\nr = " + str(r) + ";\nCOS: " + str(last_line1) + "\nUniform Grid: " + str(last_line2) + "<br>"
+      result = result + "Problem " + str(i) + ";\nr = " + str(r) + ";\nCOS: " + str(last_line1) + "\nUniform Grid: " + str(last_line2) + "<br>"
     return jsonify(status="success", result=result)
 
 @app.route('/administrator/login/', methods=['POST', 'GET'])
