@@ -36,7 +36,7 @@ def runCalculation():
     last_line1 = lines[-1]
     last_line2 = lines[-2]
     f.close()
-    result = result + "Problem " + str(problem_id) + ";\nr = " + str(r) + ";\nCOS: " + str(last_line1) + "\nUniform Grid: " + str(last_line2)
+    result = result + "Problem " + str(problem_id) + "; r = " + str(r) + "; COS: " + str(last_line1) + "; Uniform Grid: " + str(last_line2)
     return jsonify(status="success", result=result)
   else:
     running1 = runBench.delay(1, float(r))
@@ -50,7 +50,7 @@ def runCalculation():
       last_line1 = lines[-1]
       last_line2 = lines[-2]
       f.close()
-      result = result + "Problem " + str(i) + ";\nr = " + str(r) + ";\nCOS: " + str(last_line1) + "\nUniform Grid: " + str(last_line2) + "<br>"
+      result = result + "Problem " + str(i) + "; r = " + str(r) + ";COS: " + str(last_line1) + "; Uniform Grid: " + str(last_line2) + "<hr>"
     return jsonify(status="success", result=result)
 
 @app.route('/administrator/login/', methods=['POST', 'GET'])

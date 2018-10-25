@@ -175,7 +175,7 @@
           $("body").css("cursor", "auto");
           $('#calculate_btn').text('Calculate');
           $('#calculate_btn').prop("disabled", false);
-          $('#result').text(data['result']);
+          $('#result').html(data['result']);
         },
         timeout: 300000
       });
