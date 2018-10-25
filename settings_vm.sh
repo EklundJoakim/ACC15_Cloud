@@ -10,6 +10,7 @@ sudo apt-get install -y octave
 sudo pip3 install oct2py
 sudo pip3 install scipy
 sudo apt-get install -y pyhton3-opestackclient
+sudo apt install -y docker.io
 sudo apt install -y rabbitmq-server
 
 # Username: ACC15
