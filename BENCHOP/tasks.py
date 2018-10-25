@@ -15,7 +15,7 @@ def runBench(prob, r):
     last_line1 = lines[-1]
     last_line2 = lines[-2]
     f.close()
-    return ("Problem " + str(prob) + "r = " + str(r) + "; COS: " + str(last_line1) + "\nUniform Grid: " + str(last_line2))
+    return ("Problem " + str(prob) + "; r = " + str(r) + "; COS: " + str(last_line1) + "\nUniform Grid: " + str(last_line2))
 
 #paths
 #Error
