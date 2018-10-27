@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from init import init_instance
 from tasks import runBench
 from time import sleep
 from flask import render_template, redirect, request, make_response, jsonify
@@ -64,6 +65,12 @@ def login():
     # the code below is executed if the request method
     # was GET or the credentials were invalid
     return render_template('login.html', error=error)
+
+@app.route('/administrator/run-new-instance/', methods=['POST'])
+def run_new_instance():
+    result = init_instance()
+    return jsonify(status="success")
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True) 
