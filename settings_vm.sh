@@ -1,4 +1,3 @@
-
 sudo apt-get update
 sudo apt-get install -y python3-pip
 export LC_ALL=C
@@ -9,7 +8,12 @@ sudo pip3 install numpy
 sudo apt-get install -y octave
 sudo pip3 install oct2py
 sudo pip3 install scipy
-sudo apt-get install -y pyhton3-opestackclient
+
+sudo apt install software-properties-common
+sudo add-apt-repository cloud-archive:rocky
+sudo apt-get update
+sudo pip3 install python-openstackclient
+
 sudo apt install -y docker.io
 sudo apt install -y rabbitmq-server
 
@@ -21,4 +25,5 @@ sudo apt install -y rabbitmq-server
 sudo rabbitmqctl add_user ACC15 pwd
 sudo rabbitmqctl add_vhost myvhost
 sudo rabbitmqctl set_user_tags ACC15 mytag
-sudo rabbitmqctl set_permissions -p myvhost ACC15 ".*" ".*" ".*"
+sudo rabbitmqctl set_permissions -p myvhost ACC15 .* .* .*
+

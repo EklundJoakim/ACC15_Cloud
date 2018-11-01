@@ -1,0 +1,9 @@
+#cloud-config
+
+apt_update: true
+packages:
+ - docker.io
+
+runcmd
+ - sudo docker pull nhatminhph/worker-celery:ver3
+ - sudo docker run --it nhatminh/worker-celery:ver3

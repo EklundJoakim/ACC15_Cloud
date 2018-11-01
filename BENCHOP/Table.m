@@ -24,27 +24,59 @@
 % POSSIBILITY OF SUCH DAMAGE.
 
 
-function [paths, timeToExecute, Error] = Table()
+function [result] = Table(number, r)
 
-clear all
 format long
 warning off
-Methods={'MC','MC-S','QMC-S','MLMC','MLMC-A',...
-    'FFT','FGL','COS',...
-    'FD','FD-NU','FD-AD',...
-    'RBF','RBF-FD','RBF-PUM','RBF-LSML','RBF-AD','RBF-MLT'};
 
 %% Problem 1 a) I
-rootpath=pwd;
-S=[90,100,110]; K=100; T=1.0; r=0.03; sig=0.15;
-U=[2.758443856146076 7.485087593912603 14.702019669720769];
+if number==1 
+    rootpath=pwd;
+    S=[90,100,110]; K=100; T=1.0; sig=0.15; %r=0.03; 
+    U=[2.758443856146076 7.485087593912603 14.702019669720769];
+
+    filepathsBSeuCallUI=getfilenames('./','BSeuCallUI_*.m');
+    par={S,K,T,r,sig};
+    [timeBSeuCallUI,relerrBSeuCallUI] = executor(rootpath,filepathsBSeuCallUI,U,par);
     
-filepathsBSeuCallUI=getfilenames('./','BSeuCallUI_*.m');
-par = {S,K,T,r,sig};
-[timeBSeuCallUI,relerrBSeuCallUI] = executor(rootpath, filepathsBSeuCallUI, U, par);
-cd(rootpath);
+    time = timeBSeuCallUI;
+    relError = relerrBSeuCallUI;
+    problem = 'Black–Scholes–Merton model for one underlying asset';
+   
+    result = [time, relError];
+    cd(rootpath);
+     
+%% Problem 1 b) I
+elseif number==2 
+    rootpath=pwd;
+    S=[90,100,110]; K=100; T=1.0; sig=0.15; %r=0.03; 
+    U=[10.726486710094511 4.820608184813253 1.828207584020458];
     
-paths = filepathsBSeuCallUI';
-timeToExecute = timeBSeuCallUI';
-Error = relerrBSeuCallUI';
+    filepathsBSamPutUI=getfilenames('./','BSamPutUI_*.m');
+    par={S,K,T,r,sig};
+    [timeBSamPutUI,relerrBSamPutUI] = executor(rootpath,filepathsBSamPutUI,U,par);
+    
+    time = timeBSamPutUI;
+    relError = relerrBSamPutUI;
+    problem = 'Black Scholes Merton model with discrete dividends';
+    result = [time, relError];
+    cd(rootpath);
+
+%% Problem 1 c) I
+elseif number==3
+    rootpath=pwd;
+    S=[90,100,110]; K=100; T=1.0; B=1.25*K; sig=0.15; %r=0.03;
+    U=[1.822512255945242 3.294086516281595 3.221591131246868];
+    
+    filepathsBSupoutCallI=getfilenames('./','BSupoutCallI_*.m');
+    par={S,K,T,r,sig,B};
+    [timeBSupoutCallI,relerrBSupoutCallI] = executor(rootpath,filepathsBSupoutCallI,U,par);
+    
+    time = timeBSupoutCallI;
+    relError = relerrBSupoutCallI;
+    problem = 'Black Scholes Merton model with local volatility';
+    result = [time, relError];
+    cd(rootpath);
+end
+
 end
