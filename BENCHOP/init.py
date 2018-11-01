@@ -1,14 +1,20 @@
 # http://docs.openstack.org/developer/python-novaclient/ref/v2/servers.html
-import time, os, sys
+import time, os, sys, json
 import inspect
 from os import environ as env
 
-from  novaclient import client
+from novaclient import client
 import keystoneclient.v3.client as ksclient
 from keystoneauth1 import loading
 from keystoneauth1 import session
+import random, string
+
+def randomword(length):
+   letters = string.ascii_lowercase
+   return ''.join(random.choice(letters) for i in range(length))
 
 def init_instance():
+    ranStr = randomword(10)
     flavor = "ACCHT18.large"
     private_net = "SNIC 2018/10-30 Internal IPv4 Network"
     floating_ip_pool_name = "Public External IPv4 network"
@@ -31,18 +37,12 @@ def init_instance():
 
     flavor = nova.flavors.find(name=flavor)
 
-    try:
-        nova.floating_ip_pools.list()
-        floating_ip = nova.floating_ips.create(nova.floating_ip_pools.list()[0].name)
-    except Exception as e:
-        return json.dumps({"success": False, 'message': e.message})
-
     if private_net != None:
         net = nova.neutron.find_network(private_net)
         nics = [{'net-id': net.id}]
     else:
         sys.exit("private-net not defined.")
-
+    #print (nova.floating_ips.create(nova.floating_ip_pools.list()[0].name))
     #print("Path at terminal when executing this file")
     #print(os.getcwd() + "\n")
     cfg_file_path =  os.getcwd()+'/cloud-cfg.txt'
@@ -54,7 +54,7 @@ def init_instance():
     secgroups = ['default', 'hungphan_security_c1']
 
     print ("Creating instance ... ")
-    instance = nova.servers.create(name="acc-15-new-vm", image=image, flavor=flavor, userdata=userdata, nics=nics,security_groups=secgroups)
+    instance = nova.servers.create(name="acc-15-new-vm-" + ranStr, image=image, flavor=flavor, userdata=userdata,key_name="keyae", nics=nics,security_groups=secgroups)
     inst_status = instance.status
     print ("waiting for 10 seconds.. ")
     time.sleep(10)
@@ -63,8 +63,15 @@ def init_instance():
         time.sleep(5)
         instance = nova.servers.get(instance.id)
         inst_status = instance.status
+    try:
+        nova.floating_ip_pools.list()
+        floating_ip = nova.floating_ips.create(nova.floating_ip_pools.list()[0].name)
+        instance.add_floating_ip(floating_ip)
+        print (floating_ip)
+    except Exception as e:
+        print ("cannot add floating ip")
 
-    instance.add_floating_ip(floating_ip)
+
     print ("Instance: "+ instance.name +" is in " + inst_status + "state")
     return json.dumps({'success': True,
 						'id': instance.id,

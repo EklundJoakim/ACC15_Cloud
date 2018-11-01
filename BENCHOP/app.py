@@ -1,4 +1,4 @@
-import os
+import os, json
 from flask import Flask
 from init import init_instance
 from tasks import runBench
@@ -14,11 +14,6 @@ def homepage():
 @app.route('/homepage/')
 def static_page():
     return render_template('homepage.html')
-
-@app.route('/calculate/', methods = ['GET'])
-def runbenchmark():
-  results = runBench.delay()
-  return results.get()
 
 @app.route('/run-calculation/', methods = ['POST'])
 def runCalculation():
@@ -66,10 +61,10 @@ def login():
     # was GET or the credentials were invalid
     return render_template('login.html', error=error)
 
-@app.route('/administrator/run-new-instance/', methods=['POST'])
+@app.route('/administrator/run-new-instance/', methods=['GET'])
 def run_new_instance():
     result = init_instance()
-    return jsonify(status="success")
+    return result
 
 
 if __name__ == '__main__':
