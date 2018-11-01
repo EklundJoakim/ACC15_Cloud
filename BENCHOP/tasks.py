@@ -5,9 +5,10 @@ from oct2py import octave
 from subprocess import call
 from runfile import runfile
 
-#AppCelery = Celery('tasks', backend='rpc://', broker='amqp://ACC15:pwd@130.238.29.148:/myvhost')
-AppCelery = Celery('tasks', backend='rpc://', broker='pyamqp://')
+AppCelery = Celery('tasks', backend='rpc://', broker='amqp://ACC15:pwd@benchop.duckdns.org:/myvhost')
+#AppCelery = Celery('tasks', backend='rpc://', broker='pyamqp://')
 @AppCelery.task
+
 def runBench(prob, r):
     runfile(prob, r)
     f = open("result-" + str(prob) + ".txt",'r')

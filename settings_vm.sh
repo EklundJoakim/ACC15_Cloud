@@ -8,10 +8,13 @@ sudo pip3 install numpy
 sudo apt-get install -y octave
 sudo pip3 install oct2py
 sudo pip3 install scipy
+
 sudo apt install software-properties-common
 sudo add-apt-repository cloud-archive:rocky
 sudo apt-get update
 sudo pip3 install python-openstackclient
+
+sudo apt install -y docker.io
 sudo apt install -y rabbitmq-server
 
 # Username: ACC15
