@@ -5,7 +5,7 @@ The Group has created a BENCHOP as a service cloud application that provides the
 
 The technical solution can be found in the BENCHOP folder.
 
-The project report can be found as 'Final Report - group ACC15.pdf'
+The project report can be found as 'BENCHOP as a Service - ACC15.pdf'
 
 ## ABSTRACT ##
 The aim of this project was to design and create a scalable cloud architecture running the benchmark
